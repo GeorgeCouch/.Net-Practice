@@ -28,169 +28,164 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.Finish = new System.Windows.Forms.Button();
+            this.None = new System.Windows.Forms.RadioButton();
+            this.Bloom = new System.Windows.Forms.RadioButton();
+            this.HDR = new System.Windows.Forms.RadioButton();
+            this.Windowed = new System.Windows.Forms.CheckBox();
+            this.VerticalSync = new System.Windows.Forms.CheckBox();
+            this.Low = new System.Windows.Forms.Button();
+            this.Medium = new System.Windows.Forms.Button();
+            this.High = new System.Windows.Forms.Button();
+            this.Ultra = new System.Windows.Forms.Button();
+            this.Default = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.Resolutions = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.AnisotropicFiltering = new System.Windows.Forms.ComboBox();
+            this.Antialiasing = new System.Windows.Forms.ComboBox();
+            this.AspectRatio = new System.Windows.Forms.ComboBox();
+            this.graphicsAdapter = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.trackBar2 = new System.Windows.Forms.TrackBar();
+            this.Cancel = new System.Windows.Forms.Button();
+            this.Github = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // Finish
             // 
-            this.button1.Location = new System.Drawing.Point(528, 359);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "OK";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Finish.Location = new System.Drawing.Point(528, 359);
+            this.Finish.Name = "Finish";
+            this.Finish.Size = new System.Drawing.Size(75, 23);
+            this.Finish.TabIndex = 3;
+            this.Finish.Text = "Finish";
+            this.Finish.UseVisualStyleBackColor = true;
+            this.Finish.Click += new System.EventHandler(this.finish_Click);
             // 
-            // radioButton1
+            // None
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 18);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(51, 17);
-            this.radioButton1.TabIndex = 4;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "None";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.None.AutoSize = true;
+            this.None.Location = new System.Drawing.Point(6, 18);
+            this.None.Name = "None";
+            this.None.Size = new System.Drawing.Size(51, 17);
+            this.None.TabIndex = 4;
+            this.None.TabStop = true;
+            this.None.Text = "None";
+            this.None.UseVisualStyleBackColor = true;
+            this.None.CheckedChanged += new System.EventHandler(this.noneScreenEffect_CheckedChanged);
             // 
-            // radioButton2
+            // Bloom
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(6, 41);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(54, 17);
-            this.radioButton2.TabIndex = 5;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Bloom";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.Bloom.AutoSize = true;
+            this.Bloom.Location = new System.Drawing.Point(6, 41);
+            this.Bloom.Name = "Bloom";
+            this.Bloom.Size = new System.Drawing.Size(54, 17);
+            this.Bloom.TabIndex = 5;
+            this.Bloom.TabStop = true;
+            this.Bloom.Text = "Bloom";
+            this.Bloom.UseVisualStyleBackColor = true;
+            this.Bloom.CheckedChanged += new System.EventHandler(this.bloomScreenEffects_CheckedChanged);
             // 
-            // radioButton3
+            // HDR
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(6, 64);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(49, 17);
-            this.radioButton3.TabIndex = 6;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "HDR";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.HDR.AutoSize = true;
+            this.HDR.Location = new System.Drawing.Point(6, 64);
+            this.HDR.Name = "HDR";
+            this.HDR.Size = new System.Drawing.Size(49, 17);
+            this.HDR.TabIndex = 6;
+            this.HDR.TabStop = true;
+            this.HDR.Text = "HDR";
+            this.HDR.UseVisualStyleBackColor = true;
+            this.HDR.CheckedChanged += new System.EventHandler(this.hdrScreenEffects_CheckedChanged);
             // 
-            // checkBox1
+            // Windowed
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(6, 30);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(77, 17);
-            this.checkBox1.TabIndex = 9;
-            this.checkBox1.Text = "Windowed";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.Windowed.AutoSize = true;
+            this.Windowed.Location = new System.Drawing.Point(6, 30);
+            this.Windowed.Name = "Windowed";
+            this.Windowed.Size = new System.Drawing.Size(77, 17);
+            this.Windowed.TabIndex = 9;
+            this.Windowed.Text = "Windowed";
+            this.Windowed.UseVisualStyleBackColor = true;
+            this.Windowed.CheckedChanged += new System.EventHandler(this.windowed_CheckedChanged);
             // 
-            // checkBox2
+            // VerticalSync
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(6, 53);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(88, 17);
-            this.checkBox2.TabIndex = 10;
-            this.checkBox2.Text = "Vertical Sync";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.VerticalSync.AutoSize = true;
+            this.VerticalSync.Location = new System.Drawing.Point(6, 53);
+            this.VerticalSync.Name = "VerticalSync";
+            this.VerticalSync.Size = new System.Drawing.Size(88, 17);
+            this.VerticalSync.TabIndex = 10;
+            this.VerticalSync.Text = "Vertical Sync";
+            this.VerticalSync.UseVisualStyleBackColor = true;
+            this.VerticalSync.CheckedChanged += new System.EventHandler(this.verticalSync_CheckedChanged);
             // 
-            // button2
+            // Low
             // 
-            this.button2.Location = new System.Drawing.Point(3, 19);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Low";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.Low.Location = new System.Drawing.Point(3, 19);
+            this.Low.Name = "Low";
+            this.Low.Size = new System.Drawing.Size(75, 23);
+            this.Low.TabIndex = 11;
+            this.Low.Text = "Low";
+            this.Low.UseVisualStyleBackColor = true;
+            this.Low.Click += new System.EventHandler(this.lowGraphics_Click);
             // 
-            // button3
+            // Medium
             // 
-            this.button3.Location = new System.Drawing.Point(84, 19);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 12;
-            this.button3.Text = "Medium";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.Medium.Location = new System.Drawing.Point(84, 19);
+            this.Medium.Name = "Medium";
+            this.Medium.Size = new System.Drawing.Size(75, 23);
+            this.Medium.TabIndex = 12;
+            this.Medium.Text = "Medium";
+            this.Medium.UseVisualStyleBackColor = true;
+            this.Medium.Click += new System.EventHandler(this.mediumGraphics_Click);
             // 
-            // button4
+            // High
             // 
-            this.button4.Location = new System.Drawing.Point(165, 19);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 13;
-            this.button4.Text = "High";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.High.Location = new System.Drawing.Point(165, 19);
+            this.High.Name = "High";
+            this.High.Size = new System.Drawing.Size(75, 23);
+            this.High.TabIndex = 13;
+            this.High.Text = "High";
+            this.High.UseVisualStyleBackColor = true;
+            this.High.Click += new System.EventHandler(this.highGraphics_Click);
             // 
-            // button5
+            // Ultra
             // 
-            this.button5.Location = new System.Drawing.Point(246, 19);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 14;
-            this.button5.Text = "Ultra";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            this.Ultra.Location = new System.Drawing.Point(246, 19);
+            this.Ultra.Name = "Ultra";
+            this.Ultra.Size = new System.Drawing.Size(75, 23);
+            this.Ultra.TabIndex = 14;
+            this.Ultra.Text = "Ultra";
+            this.Ultra.UseVisualStyleBackColor = true;
+            this.Ultra.Click += new System.EventHandler(this.ultraGraphics_Click);
             // 
-            // button6
+            // Default
             // 
-            this.button6.Location = new System.Drawing.Point(327, 19);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(173, 23);
-            this.button6.TabIndex = 15;
-            this.button6.Text = "Default";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.Default.Location = new System.Drawing.Point(327, 19);
+            this.Default.Name = "Default";
+            this.Default.Size = new System.Drawing.Size(173, 23);
+            this.Default.TabIndex = 15;
+            this.Default.Text = "Default";
+            this.Default.UseVisualStyleBackColor = true;
+            this.Default.Click += new System.EventHandler(this.defaultGraphics_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.button6);
-            this.groupBox1.Controls.Add(this.button4);
-            this.groupBox1.Controls.Add(this.button5);
+            this.groupBox1.Controls.Add(this.Low);
+            this.groupBox1.Controls.Add(this.Medium);
+            this.groupBox1.Controls.Add(this.Default);
+            this.groupBox1.Controls.Add(this.High);
+            this.groupBox1.Controls.Add(this.Ultra);
             this.groupBox1.Location = new System.Drawing.Point(15, 217);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(519, 63);
@@ -200,8 +195,8 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.checkBox1);
-            this.groupBox2.Controls.Add(this.checkBox2);
+            this.groupBox2.Controls.Add(this.Windowed);
+            this.groupBox2.Controls.Add(this.VerticalSync);
             this.groupBox2.Location = new System.Drawing.Point(15, 329);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(200, 102);
@@ -211,9 +206,9 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.radioButton1);
-            this.groupBox3.Controls.Add(this.radioButton2);
-            this.groupBox3.Controls.Add(this.radioButton3);
+            this.groupBox3.Controls.Add(this.None);
+            this.groupBox3.Controls.Add(this.Bloom);
+            this.groupBox3.Controls.Add(this.HDR);
             this.groupBox3.Location = new System.Drawing.Point(222, 331);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(200, 100);
@@ -223,12 +218,12 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.comboBox5);
+            this.groupBox4.Controls.Add(this.Resolutions);
             this.groupBox4.Controls.Add(this.label5);
-            this.groupBox4.Controls.Add(this.comboBox4);
-            this.groupBox4.Controls.Add(this.comboBox3);
-            this.groupBox4.Controls.Add(this.comboBox2);
-            this.groupBox4.Controls.Add(this.comboBox1);
+            this.groupBox4.Controls.Add(this.AnisotropicFiltering);
+            this.groupBox4.Controls.Add(this.Antialiasing);
+            this.groupBox4.Controls.Add(this.AspectRatio);
+            this.groupBox4.Controls.Add(this.graphicsAdapter);
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.label3);
             this.groupBox4.Controls.Add(this.label2);
@@ -240,18 +235,18 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Graphics Adapter and Resolution";
             // 
-            // comboBox5
+            // Resolutions
             // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Items.AddRange(new object[] {
+            this.Resolutions.FormattingEnabled = true;
+            this.Resolutions.Items.AddRange(new object[] {
             "1280x720",
             "1360x768",
             "1920x1080"});
-            this.comboBox5.Location = new System.Drawing.Point(118, 46);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(291, 21);
-            this.comboBox5.TabIndex = 10;
-            this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
+            this.Resolutions.Location = new System.Drawing.Point(118, 46);
+            this.Resolutions.Name = "Resolutions";
+            this.Resolutions.Size = new System.Drawing.Size(291, 21);
+            this.Resolutions.TabIndex = 10;
+            this.Resolutions.SelectedIndexChanged += new System.EventHandler(this.resolutions_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -262,60 +257,60 @@
             this.label5.TabIndex = 9;
             this.label5.Text = "Resolutions";
             // 
-            // comboBox4
+            // AnisotropicFiltering
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
+            this.AnisotropicFiltering.FormattingEnabled = true;
+            this.AnisotropicFiltering.Items.AddRange(new object[] {
             "10 Samples",
             "11 Samples",
             "12 Samples",
             "13 Samples",
             "14 Samples",
             "15 Samples"});
-            this.comboBox4.Location = new System.Drawing.Point(118, 131);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(291, 21);
-            this.comboBox4.TabIndex = 8;
-            this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
+            this.AnisotropicFiltering.Location = new System.Drawing.Point(118, 131);
+            this.AnisotropicFiltering.Name = "AnisotropicFiltering";
+            this.AnisotropicFiltering.Size = new System.Drawing.Size(291, 21);
+            this.AnisotropicFiltering.TabIndex = 8;
+            this.AnisotropicFiltering.SelectedIndexChanged += new System.EventHandler(this.anisotropicFiltering_SelectedIndexChanged);
             // 
-            // comboBox3
+            // Antialiasing
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
+            this.Antialiasing.FormattingEnabled = true;
+            this.Antialiasing.Items.AddRange(new object[] {
             "Off (best performance)",
             "2 Samples",
             "4 Samples",
             "15 Samples"});
-            this.comboBox3.Location = new System.Drawing.Point(118, 104);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(291, 21);
-            this.comboBox3.TabIndex = 7;
-            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
+            this.Antialiasing.Location = new System.Drawing.Point(118, 104);
+            this.Antialiasing.Name = "Antialiasing";
+            this.Antialiasing.Size = new System.Drawing.Size(291, 21);
+            this.Antialiasing.TabIndex = 7;
+            this.Antialiasing.SelectedIndexChanged += new System.EventHandler(this.antialiasing_SelectedIndexChanged);
             // 
-            // comboBox2
+            // AspectRatio
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.AspectRatio.FormattingEnabled = true;
+            this.AspectRatio.Items.AddRange(new object[] {
             "Standard (4:3 or 5:4)",
             "16:9 Widescreen",
             "16:10 Widescreen"});
-            this.comboBox2.Location = new System.Drawing.Point(118, 73);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(291, 21);
-            this.comboBox2.TabIndex = 6;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.AspectRatio.Location = new System.Drawing.Point(118, 73);
+            this.AspectRatio.Name = "AspectRatio";
+            this.AspectRatio.Size = new System.Drawing.Size(291, 21);
+            this.AspectRatio.TabIndex = 6;
+            this.AspectRatio.SelectedIndexChanged += new System.EventHandler(this.aspectRatio_SelectedIndexChanged);
             // 
-            // comboBox1
+            // graphicsAdapter
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.graphicsAdapter.FormattingEnabled = true;
+            this.graphicsAdapter.Items.AddRange(new object[] {
             "NVIDIA GEFORCE GTX 1070",
             "NVIDIA GEFORCE GTX 1080"});
-            this.comboBox1.Location = new System.Drawing.Point(118, 19);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(291, 21);
-            this.comboBox1.TabIndex = 5;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.graphicsAdapter.Location = new System.Drawing.Point(118, 19);
+            this.graphicsAdapter.Name = "graphicsAdapter";
+            this.graphicsAdapter.Size = new System.Drawing.Size(291, 21);
+            this.graphicsAdapter.TabIndex = 5;
+            this.graphicsAdapter.SelectedIndexChanged += new System.EventHandler(this.graphicsAdapter_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -353,97 +348,39 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Graphics Adapter";
             // 
-            // button7
+            // Cancel
             // 
-            this.button7.Location = new System.Drawing.Point(636, 359);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 21;
-            this.button7.Text = "Cancel";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.Cancel.Location = new System.Drawing.Point(636, 359);
+            this.Cancel.Name = "Cancel";
+            this.Cancel.Size = new System.Drawing.Size(75, 23);
+            this.Cancel.TabIndex = 21;
+            this.Cancel.Text = "Cancel";
+            this.Cancel.UseVisualStyleBackColor = true;
+            this.Cancel.Click += new System.EventHandler(this.cancel_Click);
             // 
-            // linkLabel1
+            // Github
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(728, 418);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(38, 13);
-            this.linkLabel1.TabIndex = 22;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Github";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
-            // trackBar1
-            // 
-            this.trackBar1.Location = new System.Drawing.Point(585, 73);
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(104, 45);
-            this.trackBar1.TabIndex = 23;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(585, 31);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 24;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(691, 31);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 25;
-            this.button8.Text = "button8";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(691, 124);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
-            this.button9.TabIndex = 28;
-            this.button9.Text = "button9";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(585, 124);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 27;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            // 
-            // trackBar2
-            // 
-            this.trackBar2.Location = new System.Drawing.Point(585, 166);
-            this.trackBar2.Name = "trackBar2";
-            this.trackBar2.Size = new System.Drawing.Size(104, 45);
-            this.trackBar2.TabIndex = 26;
-            this.trackBar2.Scroll += new System.EventHandler(this.trackBar2_Scroll);
+            this.Github.AutoSize = true;
+            this.Github.Location = new System.Drawing.Point(728, 418);
+            this.Github.Name = "Github";
+            this.Github.Size = new System.Drawing.Size(38, 13);
+            this.Github.TabIndex = 22;
+            this.Github.TabStop = true;
+            this.Github.Text = "Github";
+            this.Github.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.github_LinkClicked);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button9);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.trackBar2);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.trackBar1);
-            this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.button7);
+            this.Controls.Add(this.Github);
+            this.Controls.Add(this.Cancel);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Finish);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -454,47 +391,39 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button Finish;
+        private System.Windows.Forms.RadioButton None;
+        private System.Windows.Forms.RadioButton Bloom;
+        private System.Windows.Forms.RadioButton HDR;
+        private System.Windows.Forms.CheckBox Windowed;
+        private System.Windows.Forms.CheckBox VerticalSync;
+        private System.Windows.Forms.Button Low;
+        private System.Windows.Forms.Button Medium;
+        private System.Windows.Forms.Button High;
+        private System.Windows.Forms.Button Ultra;
+        private System.Windows.Forms.Button Default;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox graphicsAdapter;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.ComboBox Resolutions;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.TrackBar trackBar1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TrackBar trackBar2;
+        private System.Windows.Forms.ComboBox AnisotropicFiltering;
+        private System.Windows.Forms.ComboBox Antialiasing;
+        private System.Windows.Forms.ComboBox AspectRatio;
+        private System.Windows.Forms.Button Cancel;
+        private System.Windows.Forms.LinkLabel Github;
     }
 }
 

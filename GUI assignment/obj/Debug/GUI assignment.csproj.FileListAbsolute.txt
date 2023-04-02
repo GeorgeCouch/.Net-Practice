@@ -9,3 +9,14 @@ C:\Users\georg\Source\Repos\GUI assignment\GUI assignment\obj\Debug\GUI assignme
 C:\Users\georg\Source\Repos\GUI assignment\GUI assignment\obj\Debug\GUI assignment.csproj.CoreCompileInputs.cache
 C:\Users\georg\Source\Repos\GUI assignment\GUI assignment\obj\Debug\GUI assignment.exe
 C:\Users\georg\Source\Repos\GUI assignment\GUI assignment\obj\Debug\GUI assignment.pdb
+C:\Users\georg\Source\Repos\GUI assignment\.Net-Practice\GUI assignment\bin\Debug\GUI assignment.exe.config
+C:\Users\georg\Source\Repos\GUI assignment\.Net-Practice\GUI assignment\bin\Debug\GUI assignment.exe
+C:\Users\georg\Source\Repos\GUI assignment\.Net-Practice\GUI assignment\bin\Debug\GUI assignment.pdb
+C:\Users\georg\Source\Repos\GUI assignment\.Net-Practice\GUI assignment\obj\Debug\GUI assignment.csproj.AssemblyReference.cache
+C:\Users\georg\Source\Repos\GUI assignment\.Net-Practice\GUI assignment\obj\Debug\GUI assignment.csproj.SuggestedBindingRedirects.cache
+C:\Users\georg\Source\Repos\GUI assignment\.Net-Practice\GUI assignment\obj\Debug\GUI_assignment.Form1.resources
+C:\Users\georg\Source\Repos\GUI assignment\.Net-Practice\GUI assignment\obj\Debug\GUI_assignment.Properties.Resources.resources
+C:\Users\georg\Source\Repos\GUI assignment\.Net-Practice\GUI assignment\obj\Debug\GUI assignment.csproj.GenerateResource.cache
+C:\Users\georg\Source\Repos\GUI assignment\.Net-Practice\GUI assignment\obj\Debug\GUI assignment.csproj.CoreCompileInputs.cache
+C:\Users\georg\Source\Repos\GUI assignment\.Net-Practice\GUI assignment\obj\Debug\GUI assignment.exe
+C:\Users\georg\Source\Repos\GUI assignment\.Net-Practice\GUI assignment\obj\Debug\GUI assignment.pdb
