@@ -152,7 +152,17 @@ namespace GUI_assignment
         // OK and Cancel buttons just close the program
         private void finish_Click(object sender, EventArgs e)
         {
-            StreamWriter fileOut = new StreamWriter("C:/users/georg/Documents/GameSettings.txt");
+            StreamWriter fileOut;
+            try
+            {
+                string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GameSettings.txt");
+                fileOut = new StreamWriter(filePath);
+            }
+            catch (Exception exception)
+            {
+                fileOut = new StreamWriter("../GameSettings.txt");
+                MessageBox.Show(exception.Message);
+            }
             writeRandomNumber(fileOut);
             fileOut.WriteLine();
             writeGraphicsOptions(fileOut);
