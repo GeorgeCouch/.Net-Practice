@@ -55,10 +55,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.Cancel = new System.Windows.Forms.Button();
             this.Github = new System.Windows.Forms.LinkLabel();
+            this.ListElemAdd = new System.Windows.Forms.Button();
+            this.ArrayElemSelector = new System.Windows.Forms.NumericUpDown();
+            this.ArrayElemDisplay = new System.Windows.Forms.TextBox();
+            this.ListElemToAdd = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ArrayElemSelector)).BeginInit();
             this.SuspendLayout();
             // 
             // Finish
@@ -369,11 +375,59 @@
             this.Github.Text = "Github";
             this.Github.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.github_LinkClicked);
             // 
+            // ListElemAdd
+            // 
+            this.ListElemAdd.Location = new System.Drawing.Point(587, 233);
+            this.ListElemAdd.Name = "ListElemAdd";
+            this.ListElemAdd.Size = new System.Drawing.Size(75, 23);
+            this.ListElemAdd.TabIndex = 23;
+            this.ListElemAdd.Text = "Add Item";
+            this.ListElemAdd.UseVisualStyleBackColor = true;
+            this.ListElemAdd.Click += new System.EventHandler(this.ListElemAdd_Click);
+            // 
+            // ArrayElemSelector
+            // 
+            this.ArrayElemSelector.Location = new System.Drawing.Point(565, 34);
+            this.ArrayElemSelector.Name = "ArrayElemSelector";
+            this.ArrayElemSelector.Size = new System.Drawing.Size(120, 20);
+            this.ArrayElemSelector.TabIndex = 24;
+            this.ArrayElemSelector.ValueChanged += new System.EventHandler(this.ArrayElemSelector_ValueChanged);
+            // 
+            // ArrayElemDisplay
+            // 
+            this.ArrayElemDisplay.Location = new System.Drawing.Point(691, 34);
+            this.ArrayElemDisplay.Name = "ArrayElemDisplay";
+            this.ArrayElemDisplay.Size = new System.Drawing.Size(100, 20);
+            this.ArrayElemDisplay.TabIndex = 25;
+            this.ArrayElemDisplay.TextChanged += new System.EventHandler(this.ArrayElemDisplay_TextChanged);
+            // 
+            // ListElemToAdd
+            // 
+            this.ListElemToAdd.Location = new System.Drawing.Point(688, 235);
+            this.ListElemToAdd.Name = "ListElemToAdd";
+            this.ListElemToAdd.Size = new System.Drawing.Size(100, 20);
+            this.ListElemToAdd.TabIndex = 27;
+            this.ListElemToAdd.TextChanged += new System.EventHandler(this.ListElemToAdd_TextChanged);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(587, 171);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(201, 21);
+            this.comboBox1.TabIndex = 28;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.ListElemToAdd);
+            this.Controls.Add(this.ArrayElemDisplay);
+            this.Controls.Add(this.ArrayElemSelector);
+            this.Controls.Add(this.ListElemAdd);
             this.Controls.Add(this.Github);
             this.Controls.Add(this.Cancel);
             this.Controls.Add(this.groupBox4);
@@ -391,6 +445,7 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ArrayElemSelector)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -424,6 +479,11 @@
         private System.Windows.Forms.ComboBox AspectRatio;
         private System.Windows.Forms.Button Cancel;
         private System.Windows.Forms.LinkLabel Github;
+        private System.Windows.Forms.Button ListElemAdd;
+        private System.Windows.Forms.NumericUpDown ArrayElemSelector;
+        private System.Windows.Forms.TextBox ArrayElemDisplay;
+        private System.Windows.Forms.TextBox ListElemToAdd;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

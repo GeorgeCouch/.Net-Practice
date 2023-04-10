@@ -1,13 +1,13 @@
 ﻿// George Couch
-// 4/1/2023
-// This program is based off of settings menus in video games. This assignment is for using functions and generating random numbers.
+// 4/9/2023
+// This program is based off of settings menus in video games. This assignment is for using arrays, lists and string functions
 
 // Estimated time: 1 hour
-// Actual time: 50 minutes
+// Actual time: 1 hour  15 minutes
 
 // Time Estimate Description:
-// I gave myself some extra time because I wanted to rename my functions as per your recommendation. That process took me roughly 15 minutes.
-// The rest of the project took another 35 minutes mostly due to organizing my file output and writing functions to keep clean code.
+// I didn't give myself quite enough time for this assignment. I ended up having a lot of trouble formatting my strings just right so that they all
+// looked the same after they were added. With that being said, I think I learned the most from this assignment out of all of the assignments so far.
 
 using System;
 using System.Collections.Generic;
@@ -26,6 +26,9 @@ namespace GUI_assignment
 {
     public partial class Form1 : Form
     {
+        int[] rndNums;
+        List<String> strList = new List<string>();
+
         public Form1()
         {
             InitializeComponent();
@@ -35,6 +38,8 @@ namespace GUI_assignment
         {
             // Get default settings on startup
             defaultGraphics_Click(sender, e);
+            populateIntArray();
+            ArrayElemSelector.Maximum = rndNums.Length - 1;
         }
 
         #region Empty methods for GUI items
@@ -231,5 +236,56 @@ namespace GUI_assignment
             fileOut.WriteLine(HDR.Text + "Checked = " + HDR.Checked);
         }
         #endregion
+
+        private void ArrayElemDisplay_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ArrayElemSelector_ValueChanged(object sender, EventArgs e)
+        {
+            ArrayElemDisplay.Text = rndNums[(int)ArrayElemSelector.Value].ToString();
+        }
+
+        private void ListElemAdd_Click(object sender, EventArgs e)
+        {
+            string elemText = ListElemToAdd.Text;
+            elemText = elemText.Trim();
+            elemText = elemText.ToUpper();
+            if (elemText.Contains('.'))
+            {
+                string[] splitString = elemText.Split('.');
+                elemText = splitString[1];
+                elemText = elemText.Trim();
+            }
+            strList.Add(elemText);
+            comboBox1.Items.Clear();
+            for (int i = 0; i < strList.Count; i++)
+            {
+                comboBox1.Items.Add(strList[i]);
+            }
+        }
+
+        private void populateIntArray()
+        {
+            Random rnd = new Random();
+            int numOfElements = rnd.Next(100);
+            rndNums = new int[numOfElements];
+            for (int i = 0; i < rndNums.Length; i++)
+            {
+                rndNums[i] = rnd.Next(1000);
+            }
+        }
+
+        private void ListElemToAdd_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
