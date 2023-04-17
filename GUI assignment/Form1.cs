@@ -1,29 +1,25 @@
 ﻿// George Couch
 // 4/9/2023
-// This program is based off of settings menus in video games. This assignment is for using arrays, lists and string functions
+// This program is based off of settings menus in video games. This assignment is creating classes and objects
 
-// Estimated time: 1 hour
-// Actual time: 1 hour  15 minutes
+// Estimated time: 6 hours
+// Actual time: 7 hours
 
 // Time Estimate Description:
-// I didn't give myself quite enough time for this assignment. I ended up having a lot of trouble formatting my strings just right so that they all
-// looked the same after they were added. With that being said, I think I learned the most from this assignment out of all of the assignments so far.
+// I decided to finish the functionality for my class heirarchy system this week since I knew that would be the bulk of my project. This came with many
+// challenges such as dynamically creating gui elements. I spent around 2 hours learning how to create gui elements and figuring out how to hook them up to
+// functions. From there I had a lot of trouble getting all of my objects to work together the way that I wanted them to, without tangling up my code.
+// I spent an hour longer than I expected, but I'm happy with the result.
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using System.Threading;
-using System.Diagnostics;
 
 namespace GUI_assignment
 {
+    // Driver Class
     public partial class Form1 : Form
     {
         public Form1()
@@ -35,14 +31,26 @@ namespace GUI_assignment
         {
             // Get default settings on startup
             defaultGraphics_Click(sender, e);
-            MasterVolumeSlider master = new MasterVolumeSlider(5, "5");
-            master.createMasterSlider(flowLayoutPanel1);
-            SubVolumeSlider music = new SubVolumeSlider(master.masterVolumeInt, master.masterVolumeStr, 5, "5", master.trackBar, master.textBox);
-            music.createSubSlider(flowLayoutPanel1);
-            SubVolumeSlider sfx = new SubVolumeSlider(master.masterVolumeInt, master.masterVolumeStr, 5, "5", master.trackBar, master.textBox);
-            sfx.createSubSlider(flowLayoutPanel1);
-            VoipSlider voip = new VoipSlider(master.masterVolumeInt, master.masterVolumeStr, 5, "5", false, master.trackBar, master.textBox);
-            voip.createVoipSlider(flowLayoutPanel1);
+            
+            // Create volume sliders from classes and place them in the flowLayoutPanel 
+            MasterVolumeSlider master = new MasterVolumeSlider();
+            master.createSlider(flowLayoutPanel1);
+            SubVolumeSlider music = new SubVolumeSlider(master.trackBar, master.textBox);
+            music.createSlider(flowLayoutPanel1);
+            SubVolumeSlider sfx = new SubVolumeSlider(master.trackBar, master.textBox);
+            sfx.createSlider(flowLayoutPanel1);
+
+            // Add SubVolumeSliders to list (music and sfx)
+            List<SubVolumeSlider> subVolumeSliders = new List<SubVolumeSlider>();
+            subVolumeSliders.Add(music);
+            subVolumeSliders.Add(sfx);
+
+            // Create voip volume slider using subVolumeSliders as a constructor parameter and add to flowLayoutPanel
+            VoipSlider voip = new VoipSlider(master.trackBar, master.textBox, subVolumeSliders);
+            voip.createSlider(flowLayoutPanel1);
+
+            // Set default master value to 5 (this changes all slider values to 5)
+            master.trackBar.Value = 5;
         }
 
         #region Graphics preset buttons
@@ -265,44 +273,56 @@ namespace GUI_assignment
         {
 
         }
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
     }
 
+    // Base Volume Slider Class
     public class MasterVolumeSlider
     {
-        public int masterVolumeInt;
-        public string masterVolumeStr;
-
+        // properties to access trackbar and textBox
         public TrackBar trackBar;
         public TextBox textBox;
 
-        public MasterVolumeSlider(int masterVolumeInt, string masterVolumeStr)
-        {
-            this.masterVolumeInt = masterVolumeInt;
-            this.masterVolumeStr = masterVolumeStr;
-        }
+        // Constructor
+        public MasterVolumeSlider(){}
 
-        public virtual void createMasterSlider(FlowLayoutPanel flowLayoutPanel)
+        // Method for creating slider and textbox on form and giving them onChange functions
+        public virtual void createSlider(FlowLayoutPanel flowLayoutPanel)
         {
             trackBar = new TrackBar();
             trackBar.Size = new Size(104, 45);
-            trackBar.Value = masterVolumeInt;
-            trackBar.ValueChanged += changeNumOnSliderChange;
+            trackBar.ValueChanged += trackBarChange;
             flowLayoutPanel.Controls.Add(trackBar);
 
             textBox = new TextBox();
             textBox.Size = new Size(104, 45);
-            textBox.Text = masterVolumeStr;
-            textBox.TextChanged += changeSliderOnNumEntered;
+            textBox.TextChanged += textBoxChange;
             flowLayoutPanel.Controls.Add(textBox);
         }
 
-        public virtual void changeNumOnSliderChange(object sender, EventArgs e)
+        // Methods for text box and track bar change
+        public virtual void textBoxChange(object sender, EventArgs e)
+        {
+            changeSliderOnNumEntered(textBox, trackBar);
+        }
+
+        public virtual void trackBarChange(object sender, EventArgs e)
+        {
+            changeNumOnSliderChange(textBox, trackBar);
+        }
+
+        // Make text box match trackbar value
+        public void changeNumOnSliderChange(TextBox textBox, TrackBar trackBar)
         {
             textBox.Text = trackBar.Value.ToString();
         }
 
-        public virtual void changeSliderOnNumEntered(object sender, EventArgs e)
+        // Make trackbar value match textbox (Also handle non-ints and out of bounds values entered)
+        public void changeSliderOnNumEntered(TextBox textBox, TrackBar trackBar)
         {
             int num;
             if (int.TryParse(textBox.Text, out num))
@@ -331,10 +351,11 @@ namespace GUI_assignment
         }
     }
 
+    // Inheritted class from MasterVolumeSlider
     public class SubVolumeSlider : MasterVolumeSlider
     {
-        public int subVolumeInt;
-        public string subVolumeStr;
+        // Properties
+        public int masterVolumeInt;
 
         public TrackBar subTrackBar;
         public TextBox subTextBox;
@@ -342,82 +363,65 @@ namespace GUI_assignment
         public TrackBar masterTrackbar;
         public TextBox masterTextBox;
 
+        // Bool flag
         public bool changeDueToExceed;
 
-        public SubVolumeSlider(int masterVolumeInt, string masterVolumeStr, int subVolumeInt, string subVolumeStr, 
-            TrackBar masterTrackbar, TextBox masterTextBox) : 
-            base(masterVolumeInt, masterVolumeStr)
+        // Constructor that uses references to the master volume slider and text box
+        public SubVolumeSlider(TrackBar masterTrackbar, TextBox masterTextBox)
         {
-            this.subVolumeInt = subVolumeInt;
-            this.subVolumeStr = subVolumeStr;
             this.masterTrackbar = masterTrackbar;
             this.masterTextBox = masterTextBox;
         }
 
-        public void createSubSlider(FlowLayoutPanel flowLayoutPanel)
+        // Override from master for creating slider and textbox and add them to form
+        public override void createSlider(FlowLayoutPanel flowLayoutPanel)
         {
             subTrackBar = new TrackBar();
             subTrackBar.Size = new Size(104, 45);
-            subTrackBar.Value = subVolumeInt;
-            subTrackBar.ValueChanged += changeNumOnSliderChange;
+            subTrackBar.ValueChanged += trackBarChange;
             flowLayoutPanel.Controls.Add(subTrackBar);
 
             subTextBox = new TextBox();
             subTextBox.Size = new Size(104, 45);
-            subTextBox.Text = subVolumeStr;
-            subTextBox.TextChanged += changeSliderOnNumEntered;
+            subTextBox.TextChanged += textBoxChange;
             flowLayoutPanel.Controls.Add(subTextBox);
 
-            masterTrackbar.ValueChanged += changeSliderOnMasterVolumeChange;
+            // call method when master volume changes
+            masterTrackbar.ValueChanged += masterBarChange;
         }
 
-        public override void changeNumOnSliderChange(object sender, EventArgs e)
+        // Methods for text box, track bar and master bar change
+        public override void textBoxChange(object sender, EventArgs e)
         {
-            subTextBox.Text = subTrackBar.Value.ToString();
-            changeMasterSliderOnExceedMasterVolume();
+            changeSliderOnNumEntered(subTextBox, subTrackBar);
+            changeMasterSliderOnExceedMasterVolume(subTextBox, subTrackBar);
         }
 
-        public override void changeSliderOnNumEntered(object sender, EventArgs e)
+        public override void trackBarChange(object sender, EventArgs e)
         {
-            int num;
-            if (int.TryParse(subTextBox.Text, out num))
-            {
-                if (num >= 0 && num <= 10)
-                {
-                    subTrackBar.Value = num;
-                }
-                else if (num < 0)
-                {
-                    num = 0;
-                    subTrackBar.Value = num;
-                    subTextBox.Text = "0";
-                }
-                else
-                {
-                    num = 10;
-                    subTrackBar.Value = num;
-                    subTextBox.Text = "10";
-                }
-            }
-            else
-            {
-                subTextBox.Text = "";
-            }
-            changeMasterSliderOnExceedMasterVolume();
+            changeNumOnSliderChange(subTextBox, subTrackBar);
+            changeMasterSliderOnExceedMasterVolume(subTextBox, subTrackBar);
         }
 
-        public void changeMasterSliderOnExceedMasterVolume()
+        public virtual void masterBarChange(object sender, EventArgs e)
         {
-            if (subTrackBar.Value > masterTrackbar.Value)
+            changeSliderOnMasterVolumeChange(subTrackBar);
+        }
+
+        // Method to increase master slider if a sub slider exceeds it
+        protected void changeMasterSliderOnExceedMasterVolume(TextBox textBox, TrackBar trackBar)
+        {
+            if (trackBar.Value > masterTrackbar.Value)
             {
                 changeDueToExceed = true;
-                masterTrackbar.Value = subTrackBar.Value;
-                masterTextBox.Text = subTextBox.Text;
+                masterTrackbar.Value = trackBar.Value;
+                masterTextBox.Text = textBox.Text;
                 masterVolumeInt = masterTrackbar.Value;
             }
         }
 
-        public void changeSliderOnMasterVolumeChange(object sender, EventArgs e)
+        // Method to ensure that all sliders follow master slider without falling out of bounds
+        protected void changeSliderOnMasterVolumeChange(TrackBar trackBar)
         {
             if (!changeDueToExceed)
             {
@@ -425,24 +429,24 @@ namespace GUI_assignment
                 int masterDiff = masterTrackbar.Value - masterVolumeInt;
 
                 // Ensure that subBars adjust if equal to master
-                if (subTrackBar.Value == masterVolumeInt)
+                if (trackBar.Value == masterVolumeInt)
                 {
-                    subTrackBar.Value = masterTrackbar.Value;
+                    trackBar.Value = masterTrackbar.Value;
                 }
                 else
                 {
                     // Ensure that subtrackbar doesn't fall out of bounds when following master volume
-                    if (subTrackBar.Value + masterDiff < 0)
+                    if (trackBar.Value + masterDiff < 0)
                     {
-                        subTrackBar.Value = 0;
+                        trackBar.Value = 0;
                     }
-                    else if (subTrackBar.Value + masterDiff > 10)
+                    else if (trackBar.Value + masterDiff > 10)
                     {
-                        subTrackBar.Value = 10;
+                        trackBar.Value = 10;
                     }
                     else
                     {
-                        subTrackBar.Value += masterDiff;
+                        trackBar.Value += masterDiff;
                     }
                 }
 
@@ -453,157 +457,107 @@ namespace GUI_assignment
         }
     }
 
-    public class VoipSlider : MasterVolumeSlider
+    // Inheritted class from SubVolumeSlider
+    public class VoipSlider : SubVolumeSlider
     {
-        public int voipVolumeInt;
-        public string voipVolumeStr;
-        public bool voipEnabled;
+        // Properties
+        private int voipVolumeInt;
 
-        public TrackBar voipTrackBar;
-        public TextBox voipTextBox;
-        public CheckBox voipCheckBox;
+        private TrackBar voipTrackBar;
+        private TextBox voipTextBox;
+        private CheckBox voipCheckBox;
 
-        public TrackBar masterTrackBar;
-        public TextBox masterTextBox;
+        private TrackBar masterTrackBar;
+        private TextBox masterTextBox;
 
-        public bool changeDueToExceed;
+        // Lists to store sliders and their values separately
+        private List<SubVolumeSlider> subVolumeSliders;
+        private List<int> sliderVols = new List<int>();
 
-        public VoipSlider(int masterVolumeInt, string masterVolumeStr, int voipVolumeInt, string voipVolumeStr, bool voipEnabled, 
-            TrackBar masterTrackBar, TextBox masterTextBox) : 
-            base(masterVolumeInt, masterVolumeStr)
+        // Constructor
+        public VoipSlider(TrackBar masterTrackBar, TextBox masterTextBox, List<SubVolumeSlider> subVolumeSliders) : 
+            base(masterTrackBar, masterTextBox)
         {
-            this.voipVolumeInt = voipVolumeInt;
-            this.voipVolumeStr = voipVolumeStr;
-            this.voipEnabled = voipEnabled;
             this.masterTrackBar = masterTrackBar;
             this.masterTextBox = masterTextBox;
+            this.subVolumeSliders = subVolumeSliders;
         }
 
-        public void createVoipSlider(FlowLayoutPanel flowLayoutPanel)
+        // Override from master for creating slider, textbox and checkbox and add them to form
+        public override void createSlider(FlowLayoutPanel flowLayoutPanel)
         {
             voipTrackBar = new TrackBar();
             voipTrackBar.Size = new Size(104, 45);
-            voipTrackBar.Value = voipVolumeInt;
-            voipTrackBar.ValueChanged += changeNumOnSliderChange;
+            voipTrackBar.ValueChanged += trackBarChange;
             flowLayoutPanel.Controls.Add(voipTrackBar);
 
             voipTextBox = new TextBox();
             voipTextBox.Size = new Size(104, 45);
-            voipTextBox.Text = voipVolumeStr;
-            voipTextBox.TextChanged += changeSliderOnNumEntered;
+            voipTextBox.TextChanged += textBoxChange;
             flowLayoutPanel.Controls.Add(voipTextBox);
 
             voipCheckBox = new CheckBox();
             voipCheckBox.Size = new Size(104, 45);
-            voipCheckBox.Checked = voipEnabled;
             voipCheckBox.CheckedChanged += onVoipCheckChanged;
             flowLayoutPanel.Controls.Add(voipCheckBox);
 
-            masterTrackBar.ValueChanged += changeSliderOnMasterVolumeChange;
+            // call method when master volume changes
+            masterTrackBar.ValueChanged += masterBarChange;
         }
 
-        public override void changeNumOnSliderChange(object sender, EventArgs e)
+        // Methods for text box, track bar and master track bar change 
+        public override void textBoxChange(object sender, EventArgs e)
         {
-            voipTextBox.Text = voipTrackBar.Value.ToString();
-            changeMasterSliderOnExceedMasterVolume();
+            changeSliderOnNumEntered(voipTextBox, voipTrackBar);
+            changeMasterSliderOnExceedMasterVolume(voipTextBox, voipTrackBar);
         }
 
-        public override void changeSliderOnNumEntered(object sender, EventArgs e)
+        public override void trackBarChange(object sender, EventArgs e)
         {
-            int num;
-            if (int.TryParse(voipTextBox.Text, out num))
-            {
-                if (num >= 0 && num <= 10)
-                {
-                    voipTrackBar.Value = num;
-                }
-                else if (num < 0)
-                {
-                    num = 0;
-                    voipTrackBar.Value = num;
-                    voipTextBox.Text = "0";
-                }
-                else
-                {
-                    num = 10;
-                    voipTrackBar.Value = num;
-                    voipTextBox.Text = "10";
-                }
-            }
-            else
-            {
-                voipTextBox.Text = "";
-            }
-            changeMasterSliderOnExceedMasterVolume();
+            changeNumOnSliderChange(voipTextBox, voipTrackBar);
+            changeMasterSliderOnExceedMasterVolume(voipTextBox, voipTrackBar);
         }
 
-        public void changeSliderOnMasterVolumeChange(object sender, EventArgs e)
+        public override void masterBarChange(object sender, EventArgs e)
         {
-            if (!changeDueToExceed)
-            {
-                // Get diff between current master value and master int stored
-                int masterDiff = masterTrackBar.Value - masterVolumeInt;
-
-                // Ensure that subBars adjust if equal to master
-                if (voipTrackBar.Value == masterVolumeInt)
-                {
-                    voipTrackBar.Value = masterTrackBar.Value;
-                }
-                else
-                {
-                    // Ensure that subtrackbar doesn't fall out of bounds when following master volume
-                    if (voipTrackBar.Value + masterDiff < 0)
-                    {
-                        voipTrackBar.Value = 0;
-                    }
-                    else if (voipTrackBar.Value + masterDiff > 10)
-                    {
-                        voipTrackBar.Value = 10;
-                    }
-                    else
-                    {
-                        voipTrackBar.Value += masterDiff;
-                    }
-                }
-
-                // Adjust master int to equal master trackbar for future calculations 
-                masterVolumeInt = masterTrackBar.Value;
-            }
-            changeDueToExceed = false;
-        }
-
-        public void changeMasterSliderOnExceedMasterVolume()
-        {
-            if (voipTrackBar.Value > masterTrackBar.Value)
-            {
-                changeDueToExceed = true;
-                masterTrackBar.Value = voipTrackBar.Value;
-                masterTextBox.Text = voipTextBox.Text;
-                masterVolumeInt = masterTrackBar.Value;
-            }
+            changeSliderOnMasterVolumeChange(voipTrackBar);
         }
 
         private void onVoipCheckChanged(object sender, EventArgs e)
         {
-
+            // Call method depending on state of checkbox
+            if (voipCheckBox.Checked)
+            {
+                muteMasterWhileEnabled();
+            }
+            else
+            {
+                resetVolumeWhileDisabled();
+            }
         }
 
-        public void muteMasterWhileEnabled()
+        // Store all trackbar values and then set all trackbars to 0
+        private void muteMasterWhileEnabled()
         {
-
+            sliderVols.Add(masterTrackBar.Value);
+            for (int i = 0; i < subVolumeSliders.Count; i++)
+            {
+                sliderVols.Add(subVolumeSliders[i].subTrackBar.Value);
+            }
+            voipVolumeInt = voipTrackBar.Value;
+            masterTrackBar.Value = 0;
         }
 
-        public void resetVolumeWhileDisabled()
+        // Replace all trackbar values and then clear stored trackbar values
+        private void resetVolumeWhileDisabled()
         {
-
+            masterTrackBar.Value = sliderVols[0];
+            for (int i = 0; i < subVolumeSliders.Count; i++)
+            {
+                subVolumeSliders[i].subTrackBar.Value = sliderVols[i + 1];
+            }
+            voipTrackBar.Value = voipVolumeInt;
+            sliderVols.Clear();
         }
     }
-
-    // TODOS IN ORDER OF IMPORTANCE
-    // TODO: Write remaining methods for voip class
-    // TODO: Merge functions between classes to avoid repeating code
-    // TODO: Store all options in a string array/list to meet array/list requirement
-    // TODO: Loop through array/list and write to file to meet loop and file writing requirements
-    // TODO: Use 3 string functions to format strings in array/list to meet string function requirement
-    // TODO: Add random volume levels to meet random number generation requirement
 }
