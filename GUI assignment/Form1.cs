@@ -1,15 +1,14 @@
 ﻿// George Couch
 // 4/9/2023
-// This program is based off of settings menus in video games. This assignment is creating classes and objects
+// This program is based off of settings menus in video games. This assignment is for making a nicer UI
 
-// Estimated time: 6 hours
-// Actual time: 7 hours
+// Estimated time: 1.5 hours
+// Actual time: 1.5 hours
 
 // Time Estimate Description:
-// I decided to finish the functionality for my class heirarchy system this week since I knew that would be the bulk of my project. This came with many
-// challenges such as dynamically creating gui elements. I spent around 2 hours learning how to create gui elements and figuring out how to hook them up to
-// functions. From there I had a lot of trouble getting all of my objects to work together the way that I wanted them to, without tangling up my code.
-// I spent an hour longer than I expected, but I'm happy with the result.
+// This was the first assignment where I spent almost the exact amount of time that I estimated I would on it. I had a good feeling of how long everything
+// would take since I didn't have to learn anything completely new for this assignment. The only thing that I had trouble with was resizing the checkbox
+// in my Voip slider so that all my sliders align vertically in the flow layout panel.
 
 using System;
 using System.Collections.Generic;
@@ -139,6 +138,7 @@ namespace GUI_assignment
             writeScreenEffectOptions(fileOut);
             fileOut.Flush();
             fileOut.Close();
+            Close();
         }
 
         private void cancel_Click(object sender, EventArgs e)
@@ -278,6 +278,26 @@ namespace GUI_assignment
 
         }
         #endregion
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox5_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 
     // Base Volume Slider Class
@@ -468,7 +488,6 @@ namespace GUI_assignment
         private CheckBox voipCheckBox;
 
         private TrackBar masterTrackBar;
-        private TextBox masterTextBox;
 
         // Lists to store sliders and their values separately
         private List<SubVolumeSlider> subVolumeSliders;
@@ -497,7 +516,7 @@ namespace GUI_assignment
             flowLayoutPanel.Controls.Add(voipTextBox);
 
             voipCheckBox = new CheckBox();
-            voipCheckBox.Size = new Size(104, 45);
+            voipCheckBox.Size = new Size(104, 15);
             voipCheckBox.CheckedChanged += onVoipCheckChanged;
             flowLayoutPanel.Controls.Add(voipCheckBox);
 
