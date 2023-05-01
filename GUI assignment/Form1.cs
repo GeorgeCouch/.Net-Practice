@@ -1,26 +1,21 @@
 ﻿// George Couch
-// 4/9/2023
-// This program is based off of settings menus in video games. This assignment is for making a nicer UI
-
-// Estimated time: 1.5 hours
-// Actual time: 1.5 hours
-
-// Time Estimate Description:
-// This was the first assignment where I spent almost the exact amount of time that I estimated I would on it. I had a good feeling of how long everything
-// would take since I didn't have to learn anything completely new for this assignment. The only thing that I had trouble with was resizing the checkbox
-// in my Voip slider so that all my sliders align vertically in the flow layout panel.
+// 4/30/2023
+// This program is based off of settings menus in video games. This is my final submission
 
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
 
 namespace GUI_assignment
 {
     // Driver Class
     public partial class Form1 : Form
     {
+        string[] fileArr = new string[10];
+        
         public Form1()
         {
             InitializeComponent();
@@ -48,10 +43,18 @@ namespace GUI_assignment
             VoipSlider voip = new VoipSlider(master.trackBar, master.textBox, subVolumeSliders);
             voip.createSlider(flowLayoutPanel1);
 
-            // Set default master value to 5 (this changes all slider values to 5)
-            master.trackBar.Value = 5;
+            // Set default master value to a random number between 0 and 10
+            master.trackBar.Value = generateNumBetweenRange(0, 10);
         }
 
+        // Helper method for generating random number
+        private int generateNumBetweenRange(int min, int max)
+        {
+            Random random = new Random();
+            int num = random.Next(min, max);
+            return num;
+        }
+        
         #region Graphics preset buttons
         private void lowGraphics_Click(object sender, EventArgs e)
         {
@@ -129,15 +132,48 @@ namespace GUI_assignment
                 fileOut = new StreamWriter("../GameSettings.txt");
                 MessageBox.Show(exception.Message);
             }
-            writeRandomNumber(fileOut);
+
+            // Fill Arr
+            fileArr[0] = graphicsAdapter.Text;
+            fileArr[1] = Resolutions.Text;
+            fileArr[2] = AspectRatio.Text;
+            fileArr[3] = Antialiasing.Text;
+            fileArr[4] = AnisotropicFiltering.Text;
+            fileArr[5] = Windowed.Text + "Checked = " + Windowed.Checked;
+            fileArr[6] = VerticalSync.Text + "Checked = " + VerticalSync.Checked;
+            fileArr[7] = None.Text + "Checked = " + None.Checked;
+            fileArr[8] = Bloom.Text + "Checked = " + Bloom.Checked;
+            fileArr[9] = HDR.Text + "Checked = " + HDR.Checked;
+
+            // Write to file
+            fileOut.WriteLine("Graphics Options");
+            fileOut.WriteLine("__________________");
+            for (int i = 0; i < 5; i++)
+            {
+                fileOut.WriteLine(fileArr[i]);
+            }
+
             fileOut.WriteLine();
-            writeGraphicsOptions(fileOut);
+
+            fileOut.WriteLine("Mode");
+            fileOut.WriteLine("__________________");
+            for (int i = 5; i < 7; i++)
+            {
+                fileOut.WriteLine(fileArr[i]);
+            }
+
             fileOut.WriteLine();
-            writeModeOptions(fileOut);
-            fileOut.WriteLine();
-            writeScreenEffectOptions(fileOut);
+
+            fileOut.WriteLine("Screen Effects");
+            fileOut.WriteLine("__________________");
+            for (int i = 7; i < fileArr.Length; i++)
+            {
+                fileOut.WriteLine(fileArr[i]);
+            }
+
             fileOut.Flush();
             fileOut.Close();
+
             Close();
         }
 
@@ -150,52 +186,6 @@ namespace GUI_assignment
         private void github_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com/GeorgeCouch");
-        }
-        #endregion
-
-        #region Helper Functions
-
-        private void writeRandomNumber(StreamWriter fileOut)
-        {
-            fileOut.WriteLine("Random number generator");
-            fileOut.WriteLine("__________________");
-            int num = generateNumBetweenRange(1, 100);
-            fileOut.WriteLine(num.ToString());
-        }
-
-        private int generateNumBetweenRange(int min, int max)
-        {
-            Random random = new Random();
-            int num = random.Next(min, max);
-            return num;
-        }
-
-        private void writeGraphicsOptions(StreamWriter fileOut)
-        {
-            fileOut.WriteLine("Graphics Options");
-            fileOut.WriteLine("__________________");
-            fileOut.WriteLine(graphicsAdapter.Text);
-            fileOut.WriteLine(Resolutions.Text);
-            fileOut.WriteLine(AspectRatio.Text);
-            fileOut.WriteLine(Antialiasing.Text);
-            fileOut.WriteLine(AnisotropicFiltering.Text);
-        }
-
-        private void writeModeOptions(StreamWriter fileOut)
-        {
-            fileOut.WriteLine("Mode");
-            fileOut.WriteLine("__________________");
-            fileOut.WriteLine(Windowed.Text + "Checked = " + Windowed.Checked);
-            fileOut.WriteLine(VerticalSync.Text + "Checked = " + VerticalSync.Checked);
-        }
-
-        private void writeScreenEffectOptions(StreamWriter fileOut)
-        {
-            fileOut.WriteLine("Screen Effects");
-            fileOut.WriteLine("__________________");
-            fileOut.WriteLine(None.Text + "Checked = " + None.Checked);
-            fileOut.WriteLine(Bloom.Text + "Checked = " + Bloom.Checked);
-            fileOut.WriteLine(HDR.Text + "Checked = " + HDR.Checked);
         }
         #endregion
 
@@ -229,14 +219,17 @@ namespace GUI_assignment
         {
 
         }
+        
         private void verticalSync_CheckedChanged(object sender, EventArgs e)
         {
 
         }
+        
         private void noneScreenEffect_CheckedChanged(object sender, EventArgs e)
         {
 
         }
+
         private void bloomScreenEffects_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -246,10 +239,12 @@ namespace GUI_assignment
         {
 
         }
+
         private void ListElemToAdd_TextChanged(object sender, EventArgs e)
         {
 
         }
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -259,6 +254,7 @@ namespace GUI_assignment
         {
 
         }
+
         private void ArrayElemSelector_ValueChanged(object sender, EventArgs e)
         {
 
@@ -273,11 +269,11 @@ namespace GUI_assignment
         {
 
         }
+
         private void label8_Click(object sender, EventArgs e)
         {
 
         }
-        #endregion
 
         private void groupBox2_Enter(object sender, EventArgs e)
         {
@@ -298,8 +294,10 @@ namespace GUI_assignment
         {
 
         }
+        #endregion
     }
 
+    #region Classes for sliders
     // Base Volume Slider Class
     public class MasterVolumeSlider
     {
@@ -579,4 +577,5 @@ namespace GUI_assignment
             sliderVols.Clear();
         }
     }
+    #endregion
 }
